@@ -27,13 +27,15 @@
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf dist",
-    "prepublishOnly": "npm run clean && npm run build"
+    "prepublishOnly": "npm run clean && npm run build",
+    "prepare": "cd ./node_modules/esbuild-plugin-inline-worker && npm run build || corepack npm install esbuild && corepack npx tsc || echo",
+    "prepack": "npm install --no-save esbuild && npm run build"
   },
   "dependencies": {
     "find-cache-dir": "^3.3.1"
   },
   "peerDependencies": {
-    "esbuild": "latest"
+    "esbuild": "^0.27.3"
   },
   "devDependencies": {
     "@types/node": "^24.2.0",
